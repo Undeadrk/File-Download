@@ -1,0 +1,1 @@
+export const USER_INFO_SUBMITTED = 'user_info_submitted';
