@@ -20,14 +20,14 @@
     </div>
   </div>
 
-  <UserInfoForm :node_id="route.query.id" v-if="isUserInfoFormVisible" @close="isUserInfoFormVisible = false"/>
+  <UserInfoForm :node_id="route.query.id" v-if="isUserInfoFormVisible" @close="isUserInfoFormVisible = false" />
 
 </template>
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { getIconByString, getIcon } from '@/utils/fileIcon';
+import { getIcon } from '@/utils/fileIcon';
 import { fileDetaileApi, fileDownloadApi } from '@/apis/file_api';
 import UserInfoForm from '@/components/UserInfoForm.vue';
 import { showNotify } from 'vant';
@@ -106,7 +106,13 @@ const fileClick = (file) => {
 }
 
 const dirClick = (file) => {
-  
+  if(file.need_input == 1){
+    const isSubmittedValid = checkUserInfoSubmitted();
+    if (!isSubmittedValid) {
+      showUserInfoForm();
+      return;
+    }
+  }
   const id = file.id;
   router.push({
     name: 'Home',

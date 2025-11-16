@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// 创建axios实例
+// 创建axios实例s
 const instance = axios.create({
-    baseURL: '/server', // 基础URL，结合代理配置使用
+    baseURL: '后端网址', 
     timeout: 10000, // 请求超时时间
     headers: {
         'Content-Type': 'application/json;charset=utf-8'

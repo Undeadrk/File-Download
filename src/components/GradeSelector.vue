@@ -63,8 +63,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue';
-import { GRADE_OPTIONS } from '../constants/grade'; // 引入年级数据
+import { ref, computed, watch, onMounted } from 'vue';
+import { getGradeOptions } from '../apis/grade_api.js';
 
 // 定义组件的 props
 const props = defineProps({
@@ -87,6 +87,10 @@ const props = defineProps({
   errorMessage: { 
     type: String,
     default: '',
+  },
+  id: {
+    type: String,
+    default: '',
   }
 });
 
@@ -97,12 +101,33 @@ const emit = defineEmits(['update:modelValue', 'change']);
 const showPicker = ref(false);
 
 // 年级列数据
-const gradeColumns = ref(GRADE_OPTIONS);
+const gradeColumns = ref([]);
+
+// 获取年级选项
+const fetchGrades = async () => {
+  if (!props.id) return;
+  try {
+    const grades = await getGradeOptions(props.id);
+    gradeColumns.value = grades;
+  } catch (error) {
+    console.error('获取年级选项失败:', error);
+  }
+};
+
+// 初始化时获取年级选项
+onMounted(() => {
+  fetchGrades();
+});
+
+// 监听id变化，重新获取年级选项
+watch(() => props.id, () => {
+  fetchGrades();
+});
 
 // 计算显示在输入框中的值
 const displayValue = computed(() => {
   if (props.modelValue) {
-    const selectedOption = GRADE_OPTIONS.find(option => option.value === props.modelValue);
+    const selectedOption = gradeColumns.value.find(option => option.value === props.modelValue);
     return selectedOption ? selectedOption.text : '';
   }
   return '';

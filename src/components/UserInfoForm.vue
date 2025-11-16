@@ -1,9 +1,12 @@
 <template>
-  <div class="fixed inset-0 bg-black bg-opacity-85 flex items-center justify-center">
-    <div class="form-panel bg-white p-4 rounded-2xl flex flex-col overflow-hidden min-w-80 max-w-md">
+  <div class="fixed inset-0 bg-black bg-opacity-85 flex items-center justify-center z-[9999]">
+    <div class="form-panel bg-white p-4 rounded-2xl flex flex-col overflow-hidden min-w-80 max-w-md z-[9999]">
       <!-- 可以在这里添加内容 -->
        <!-- 表单标题 -->
-        <div class="text-xl mb-4"> 领取资料 </div>
+        <div class="flex justify-between items-center mb-4">
+          <div class="text-xl"> 领取资料 </div>
+          <button class="close-btn" @click="emit('close')">×</button>
+        </div>
         <div class="form-container flex-1 overflow-y-auto p-4">
           <CustomInput v-model="userInfo.name" label="姓名" placeholder="请输入宝宝姓名" required />
           <CustomInput v-model="userInfo.phone" label="手机号" placeholder="请输入手机号" required />
@@ -21,10 +24,11 @@
             placeholder="请选择年级"
             required
             :errorMessage="gradeErrorMessage"
+            :id="props.node_id"
           />
           <!-- <p class="mt-4 font-bold text-lg">下划屏幕继续登记信息!</p>  -->
         </div>
-        <div class="submit-panel h-1/4 w-full flex flex-col justify-between items-center">
+        <div class="submit-panel min-h-24 w-full flex flex-col justify-between items-center">
           <div class="submit-btn rounded-b-sm mt-5" @click="handleSubmit">提交</div>
           <div class="acceptance-container flex items-center m-3">
             <input type="checkbox" v-model="userInfo.acceptance" class="checkmark" />
@@ -63,7 +67,6 @@ const emit = defineEmits(['close']);
 
 let userInfo = reactive(new UserInfo());
 userInfo.node_id = props.node_id;
-console.log(userInfo);
 /* 
 // 防抖函数实现
 const debounce = (func, delay) => {
@@ -156,7 +159,10 @@ const handleSubmit = async () => {
 <style scoped>
 .form-panel {
   width: 95vw;
-  height: 55vh;
+  min-height: 60vh;
+  max-height: 90vh;
+  height: auto;
+  
 }
 .submit-btn {
   width: 100%;
@@ -219,6 +225,27 @@ const handleSubmit = async () => {
   border-width: 0 2px 2px 0;
   transform: translate(-50%, -50%) rotate(45deg);
   transform-origin: center;
+}
+
+/* 关闭按钮样式 */
+.close-btn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background-color: transparent;
+  color: #999;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: #f0f0f0;
+  color: #666;
 }
 
 /* 条款链接样式 */

@@ -9,16 +9,6 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vite.dev/config/
 export default defineConfig({
-  server: {
-    proxy: {
-      '/server': {
-        target: "user-api",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/server/, '') // 移除/server前缀
-      },
-    },
-  },
-
   plugins: [
     vue(),
 
@@ -37,5 +27,6 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src')
     },
   },
+  base: '/start/',
   
 })
