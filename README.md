@@ -29,39 +29,31 @@ File-Download/
 │   ├── apis/              # API 接口封装
 │   │   ├── auth_api.js    # 认证相关接口
 │   │   └── file_api.js    # 文件相关接口
+│   │   └── grade_api.js   # 年级选项相关接口
 │   ├── assets/            # 静态资源
 │   │   ├── icons/         # 图标文件
 │   │   └── style/         # 全局样式
 │   ├── components/        # Vue 组件
 │   │   ├── CustomInput.vue          # 自定义输入框
-│   │   ├── DownLoadProgress.vue     # 下载进度条
 │   │   ├── GradeSelector.vue        # 年级选择器
-│   │   ├── Information.vue          # 信息展示
 │   │   ├── UserInfoForm.vue         # 用户信息表单
 │   │   └── VerifyCodeInput.vue      # 验证码输入框
 │   ├── constants/         # 常量定义
 │   │   ├── file_type.js   # 文件类型定义
-│   │   ├── grade.js       # 年级选项
 │   │   └── storage_key.js # 存储键名
 │   ├── router/            # 路由配置
 │   │   └── index.js       # 路由定义
-│   ├── store/             # Pinia 状态管理
-│   │   └── useFile.js     # 文件相关状态
-│   ├── types/             # TypeScript 类型定义
-│   │   ├── element.js     # 元素类型
+│   ├── types/             # 类型定义
 │   │   ├── fileDTO.js     # 文件数据传输对象
 │   │   ├── response.js    # 响应类型
 │   │   └── userInfo.js    # 用户信息类型
 │   ├── utils/             # 工具函数
 │   │   ├── dataTransfer.js    # 数据转换
-│   │   ├── download.js        # 下载工具
 │   │   ├── fileHandler.js     # 文件处理
 │   │   ├── fileIcon.js        # 文件图标
 │   │   └── http.js            # HTTP 工具
 │   ├── views/             # 页面组件
-│   │   ├── Display.vue        # 文件展示页
 │   │   ├── Home.vue           # 首页
-│   │   └── Test.vue           # 测试页
 │   ├── App.vue            # 根组件
 │   └── main.js            # 应用入口
 ├── index.html             # HTML 模板
@@ -204,8 +196,3 @@ export default {
 ## License
 
 MIT
-
-
-
-
-
