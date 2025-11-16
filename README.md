@@ -122,18 +122,7 @@ npm run preview
 />
 ```
 
-#### DownLoadProgress
-
-下载进度条组件，展示文件下载进度：
-
-```vue
-<DownLoadProgress
-  :progress="downloadProgress"
-  :status="downloadStatus"
-/>
-```
-
-## APIs
+```## APIs
 
 ### 文件 API
 
@@ -142,32 +131,8 @@ npm run preview
 - `downloadFolder(folder)`: 下载整个文件夹
 - `downloadFileFromUrl(url)`: 从 URL 下载文件
 
-### 认证 API
-
-- `login(data)`: 用户登录
-- `logout()`: 用户登出
-- `getUserInfo()`: 获取用户信息
 
 ## Configuration
-
-### Vite 配置
-
-在 `vite.config.js` 中可以配置代理、端口等：
-
-```javascript
-export default defineConfig({
-  server: {
-    port: 5173,
-    proxy: {
-      '/server': {
-        target: 'https://your-api-server.com',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/server/, '')
-      }
-    }
-  }
-})
-```
 
 ### Tailwind CSS 配置
 
@@ -185,7 +150,6 @@ export default {
   plugins: [],
 }
 ```
-
 ## Browser Support
 
 - Chrome (最新版)
